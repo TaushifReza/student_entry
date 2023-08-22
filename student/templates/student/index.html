@@ -1,0 +1,62 @@
+<!-- prettier-ignore -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Home Page
+{% endblock title %}
+
+{% block css_files %}
+
+{% endblock css_files %}
+
+{% block content %}
+<section class="container">
+  <h4 class="my-2">List of Student</h4>
+  <table class="table table-white table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">Address</th>
+        <th scope="col">Grade</th>
+        <th scope="col">Major</th>
+        <th scope="col">Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for student in student_data %}
+      <tr>
+        <th scope="row">{{ student.pk }}</th>
+        <th scope="row">{{ student.name }}</th>
+        <td>{{ student.age }}</td>
+        <td>{{ student.address }}</td>
+        <td>{{ student.grade }}</td>
+        <td>{{ student.major }}</td>
+        <td>
+          <button type="button" class="btn btn-success">
+            <a
+              href="{% url 'edit_student' student.pk %}"
+              style="text-decoration: none"
+              class="text-white"
+              >Edit</a
+            >
+          </button>
+
+          <button type="button" class="btn btn-danger">
+            <a
+              href="{% url 'delete_student' student.pk %}"
+              style="text-decoration: none"
+              class="text-white"
+              >Delete</a
+            >
+          </button>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+{% endblock content %}

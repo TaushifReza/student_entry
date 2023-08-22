@@ -1,0 +1,47 @@
+<!-- prettier-ignore -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Student Entry
+{% endblock title %}
+
+{% block css_files %}
+
+{% endblock css_files %}
+
+{% block content %}
+<!-- ========== Start form ========== -->
+<section>
+  <div class="row justify-content-center m-0">
+    <form
+      class="p-4 border border-dark rounded col-5 mt-4"
+      action="{% url 'student_register_page' %}"
+      method="POST"
+    >
+      {% csrf_token %}
+      <h3 class="text-center">Student Entry</h3>
+      <div class="m-2">
+        {% for form_field in form %}
+        <div class="">
+          <div class="m-1">
+            <!-- prettier-ignore -->
+            {{ form_field.label_tag }}
+          </div>
+          <!-- prettier-ignore -->
+          {{ form_field }}
+          <div class="m-1">
+            <!-- prettier-ignore -->
+            {{ form_field.errors }}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="text-center mt-4">
+        <button class="btn btn-outline-dark">Sign Up</button>
+      </div>
+    </form>
+  </div>
+</section>
+<!-- ========== End form ========== -->
+{% endblock content %}
